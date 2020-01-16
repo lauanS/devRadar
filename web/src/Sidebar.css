@@ -64,6 +64,6 @@ aside form button[type=submit]{
   transition: background 0.5s;
 }
 
-aside form button[type=submit]{
+aside form button[type=submit]:hover{
   background: #6931ca;
 }
