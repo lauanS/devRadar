@@ -6,32 +6,11 @@ import './App.css';
 import './Sidebar.css';
 import './Main.css';
 
-import DevItem from './components/DevItem'
+import DevForm from './components/DevForm';
+import DevItem from './components/DevItem';
 
 function App() {
   const [devs, setDevs] = useState([]);
-
-  const [github_username, setGithubUsername] = useState('');
-  const [techs, setTechs] = useState('');
-
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const {latitude, longitude} = position.coords;
-        setLatitude(latitude);
-        setLongitude(longitude);
-      },
-      (err) => {
-        console.log(err)
-      },
-      {
-        timeout: 80000,
-      }
-    )
-  }, []);
 
   useEffect(() => {
       async function loadDevs() {
@@ -44,82 +23,18 @@ function App() {
     loadDevs();
   }, [])
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    const response = await api.post('/devs', {
-      github_username,
-      techs,
-      latitude,
-      longitude,
-      
-    });
+  async function handleSubmit(data) {
+    const response = await api.post('/devs', data);
    
-
-    setGithubUsername('');
-    setTechs('');
-    
     setDevs([...devs, response.data]);
-
-
   }
 
 
   return (
     <div id="app">
       <aside>
-
-        <strong>Cadastrar</strong>
-        <form onSubmit={handleSubmit}>
-          <div className="input-block">
-            <label htmlFor="github_username">Usuário do Github</label>
-            <input 
-              name="github_username" 
-              id="github_username" 
-              value={github_username}
-              onChange={e => setGithubUsername(e.target.value)}
-              required />
-          </div>
+        <DevForm onSubmit={handleSubmit} />
         
-          <div className="input-block">
-            <label htmlFor="techs">Tecnologias</label>
-            <input 
-            name="techs" 
-            id="techs" 
-            value={techs} 
-            onChange={e => setTechs(e.target.value)}
-            required />
-          </div>
-
-          <div className="input-group">
-            <div className="input-block">
-              <label htmlFor="latitude">Latitude</label>
-              <input 
-                name="latitude" 
-                id="latitude"
-                type="number" 
-                value={latitude} 
-                onChange={e => setLatitude(e.target.value)}
-                required 
-              />
-            </div>
-          
-            <div className="input-block">
-              <label htmlFor="longitude">Longitude</label>
-              <input 
-                name="longitude" 
-                id="longitude" 
-                type="number" 
-                value={longitude} 
-                onChange={e => setLongitude(e.target.value)}
-                required 
-              />
-            </div>
-          
-          </div> 
-
-          <button type="submit">Salvar</button>
-        </form>
 
       </aside>
       <main>
