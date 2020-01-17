@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import api from './services/api'; 
 
 import './global.css';
 import './App.css';
 import './Sidebar.css';
 import './Main.css';
 
+import DevItem from './components/DevItem'
+
 function App() {
-  const [githubUsername, setGithubUsername] = useState('');
+  const [devs, setDevs] = useState([]);
+
+  const [github_username, setGithubUsername] = useState('');
   const [techs, setTechs] = useState('');
 
   const [latitude, setLatitude] = useState('');
@@ -23,16 +28,43 @@ function App() {
         console.log(err)
       },
       {
-        timeout: 30000,
+        timeout: 80000,
       }
     )
   }, []);
 
+  useEffect(() => {
+      async function loadDevs() {
+        const response = await api.get('/devs');
+
+        setDevs(response.data);
+    
+    }
+
+    loadDevs();
+  }, [])
+
   async function handleSubmit(e) {
     e.preventDefault();
 
+    const response = await api.post('/devs', {
+      github_username,
+      techs,
+      latitude,
+      longitude,
+      
+    });
+   
+
+    setGithubUsername('');
+    setTechs('');
+    
+    setDevs([...devs, response.data]);
+
+
   }
-  
+
+
   return (
     <div id="app">
       <aside>
@@ -44,7 +76,7 @@ function App() {
             <input 
               name="github_username" 
               id="github_username" 
-              value={githubUsername}
+              value={github_username}
               onChange={e => setGithubUsername(e.target.value)}
               required />
           </div>
@@ -92,53 +124,10 @@ function App() {
       </aside>
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSNeL8_E3qq68K5f4bcXoXe9ZBtS-qSyzD5Qt_hkftutWZmeQg_"
-                alt="Gerald"
-              />
-              <div className="user-info">
-                <strong>Geraldo da Silvia</strong>
-                <span>Java, Spring, HTML</span>
-              </div>
-            </header>
-            <p>Ocupado com os novos negócios</p>
-            <a href="https://github.com/lauanS">Perfil do Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSNeL8_E3qq68K5f4bcXoXe9ZBtS-qSyzD5Qt_hkftutWZmeQg_"
-                alt="Gerald"
-              />
-              <div className="user-info">
-                <strong>Geraldo da Silvia</strong>
-                <span>Java, Spring, HTML</span>
-              </div>
-
-            </header>
-            <p>Ocupado com os novos negócios</p>
-            <a href="https://github.com/lauanS">Perfil do Github</a>
-          </li>
-
-
-          <li className="dev-item">
-            <header>
-              <img 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSNeL8_E3qq68K5f4bcXoXe9ZBtS-qSyzD5Qt_hkftutWZmeQg_"
-                alt="Gerald"
-              />
-              <div className="user-info">
-                <strong>Geraldo da Silvia</strong>
-                <span>Java, Spring, HTML</span>
-              </div>
-
-            </header>
-            <p>Ocupado com os novos negócios</p>
-            <a href="https://github.com/lauanS">Perfil do Github</a>
-          </li>
+          {devs.map(dev => (
+            <DevItem key={dev._id} dev={dev} />
+          ))}
+          
         </ul>
 
       </main>
