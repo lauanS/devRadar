@@ -24,6 +24,6 @@ module.exports = {
     });
 
     console.log(request.query, techsArray);
-    return response.json({ devs: [] })
+    return response.json({ devs: devs })
   }
 }
