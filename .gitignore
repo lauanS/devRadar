@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Connection String
-backend/src/utils/connectionString.js
+backend/src/utils/connectionMongoDB.js
