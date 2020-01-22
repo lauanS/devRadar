@@ -1,4 +1,5 @@
 
+
 # devRadar
 Repositório do projeto desenvolvido durante a 10º semana OmniStack
 
@@ -6,9 +7,14 @@ Uma aplicação para ajudar a encontrar desenvolvedores perto de você que traba
 
 ### Aplicação Web
 
+![web application](https://raw.githubusercontent.com/lauanS/devRadar/master/imgs/web-application.gif)
+
 Através da aplicação web é possível cadastrar desenvolvedores, utilizando o nome de usuário do Github, suas tecnologias e a localização (latitude e longitude).
 
 ### Aplicação Mobile
+<p align="center">
+  <img width="300" height="533" src="https://raw.githubusercontent.com/lauanS/devRadar/master/imgs/mobile.gif">
+</p>
 
 Pelo aplicativo o usuário consegue localizar os desenvolvedores próximos, filtrando por suas tecnologias.
 
