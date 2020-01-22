@@ -4,11 +4,11 @@ Repositório do projeto desenvolvido durante a 10º semana OmniStack
 
 Uma aplicação para ajudar a encontrar desenvolvedores perto de você que trabalham com determinada tecnologia.
 
-## Aplicação Web
+### Aplicação Web
 
 Através da aplicação web é possível cadastrar desenvolvedores, utilizando o nome de usuário do Github, suas tecnologias e a localização (latitude e longitude).
 
-## Aplicação Mobile
+### Aplicação Mobile
 
 Pelo aplicativo o usuário consegue localizar os desenvolvedores próximos, filtrando por suas tecnologias.
 
