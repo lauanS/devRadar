@@ -6,11 +6,11 @@ Uma aplicação para ajudar a encontrar desenvolvedores perto de você que traba
 
 ## Aplicação Web
 
-Através da aplicação web é possível cadastrar novos desenvolvedores, informando o usuário do Github deles, quais tecnologias eles usam e sua localização (latitude e longitude).
+Através da aplicação web é possível cadastrar desenvolvedores, utilizando o nome de usuário do Github, suas tecnologias e a localização (latitude e longitude).
 
 ## Aplicação Mobile
 
-Pelo aplicativo de celular o usuário consegue localizar buscar os devs próximos a ele, filtrando por suas tecnologias.
+Pelo aplicativo o usuário consegue localizar os desenvolvedores próximos, filtrando por suas tecnologias.
 
 ## Getting started
 
@@ -27,7 +27,7 @@ Para instalar as dependências do backend, execute:
  npm install # ou yarn install
 ``` 
 
-Também será necessário configurar um cluster no [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) e colocar a sua string de conexão no arquivo _backend/src/utils/connectionString.js_.
+Também será necessário configurar um cluster no [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) e colocar a sua string de conexão no arquivo `backend/src/utils/connectionString.js`.
 
 Para iniciar o servidor execute:
 
@@ -52,14 +52,22 @@ npm dev # ou yarn dev
 
 A parte mobile do projeto foi desenvolvida utilizando a ferramenta [Expo](https://expo.io/), que ajuda no desenvolvimento da aplicação, fornecendo fácil acesso às APIs nativas do celular sem precisar instalar outras dependências
 
-Para instalar globalmente o Expo execute:
+Para instalar Expo execute:
+``` bash
+npm install expo-cli --global
+``` 
+ou pelo yarn:
+``` bash
+yarn global add install expo-cli
+``` 
 
-`npm install expo-cli --global`
+Para visualizar o projeto no seu celular coloque o IP do seu servidor backend no arquivo `src/services/api.js`, depois execute:
 
-Para visualizar o projeto no seu celular, baixe o  aplicativo Expo (disponível para Android e iOS ) no seu dispositivo execute:
 ``` bash
 npm start # ou yarn start
 ``` 
-E escaneie o QR code que irá aparecer.
+
+
+e escaneie o QR code que irá aparecer com o aplicativo Expo (disponível na playstore para Android e na appStore iOS).
 
 
